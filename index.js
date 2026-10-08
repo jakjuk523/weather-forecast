@@ -50,9 +50,20 @@ function userSelect() {
             
             lat = city.lat;
             lon = city.lon;
+            
+            const p = document.createElement("p");
+            const p2 = document.createElement("p");
+            
+            p.textContent = lat;
+            p2.textContent = lon;
+            
+            document.body.appendChild(p);
+            document.body.appendChild(p2);
             break;
         }
     }
 }
 
 createOption();
+
+button.addEventListener("click", userSelect)
