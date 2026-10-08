@@ -17,11 +17,13 @@ async function getCityesApi() {
 async function createOption() {
     const data = await getCityesApi();
     
-    if (data) {
-        for (const city of data.name) {
+    if (data && Array.isArray(data)) {
+        select.innerHTML = "<option value=''>Не выбрано</option>";
+        
+        for (const city of data) {
             const option = document.createElement("option");
-            option.value = city;
-            option.textContent = city;
+            option.value = city.name;
+            option.textContent = city.name;
             select.appendChild(option);
         }
     }
