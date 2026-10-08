@@ -35,7 +35,8 @@ async function createOption() {
     }
 }
 
-function userSelect() { 
+function userSelect() {
+    console.log("Кнопка нажата");
     
     let user_choice = select.value;
     
@@ -43,9 +44,11 @@ function userSelect() {
         p_error.textContent = "Город не выбран";
         return;
     }
-    
+
+    console.log(user_choice);
     for (const city of data) {
         if (city.name === user_choice) {
+            console.log("Город найден");
             p_error.textContent = "";
             
             lat = city.lat;
