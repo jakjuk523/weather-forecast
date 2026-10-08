@@ -1,5 +1,5 @@
 const button = document.getElementById("btn1");
-const select = document.getElementById("select1");
+const select = document.getElementById("slct1");
 const p_error = document.getElementById("p1");
 
 async function getCityesApi() {
@@ -29,4 +29,4 @@ async function createOption() {
     }
 }
 
-createOption()
+createOption();
