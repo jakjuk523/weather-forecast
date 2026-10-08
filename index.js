@@ -1,21 +1,30 @@
 const button = document.getElementById("btn1");
+const select = document.getElementById("select1");
+const p_error = document.getElementById("p1");
 
 async function getCityesApi() {
     try {
         const response = await fetch("cityes.json");
         const data = await response.json();
+        return data;
         
-        const p = document.createElement("p");
-        document.body.appendChild(p);
-        p.textContent = data;
-        p.style.margin = "0";
-        p.textContent = JSON.stringify(data, null, 2); 
     } catch (error) {
-        const p = document.createElement("p");
-        document.body.appendChild(p);
-        p.textContent = "ERROR";
-        p.style.margin = "0";
+        p_error.textContent = "Ошибка";
     }
 }
 
-button.addEventListener("click", getCityesApi);
+
+async function createOption() {
+    const data = await getCityesApi();
+    
+    if (data) {
+        for (const city of data.name) {
+            const option = document.createElement("option");
+            option.value = city;
+            option.textContent = city;
+            select.appendChild(option);
+        }
+    }
+}
+
+createOption()
