@@ -13,61 +13,106 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    gap: 16px;
 
-    gap: 15px;
-
-    background-color: #e2e8f0;
+    background-color: #17212e;
 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 
-/* ТЕКСТ */
+/* СООБЩЕНИЯ ОБ ОШИБКАХ */
 
 .p1_style {
     margin: 0;
 
-    color: #b91c1c;
+    color: #fca5a5;
 
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
+    text-align: center;
 }
+
+
+/* ВРЕМЯ */
 
 .p2_style {
     margin: 0;
 
-    color: #1e293b;
+    color: #cbd5e1;
 
-    font-size: 22px;
-    font-weight: 600;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
 }
+
+
+/* ТЕМПЕРАТУРА */
 
 .p3_style {
     margin: 0;
 
-    color: #2563eb;
+    color: #7dd3fc;
 
     font-size: 42px;
-    font-weight: bold;
+    font-weight: 700;
+    text-align: center;
 }
 
 
-/* SELECT */
+/* ПОЛЕ ПОИСКА ГОРОДА */
+
+.input1_style {
+    width: 280px;
+    min-width: 220px;
+    max-width: 85vw;
+
+    height: 46px;
+    padding: 0 14px;
+
+    border: 1px solid #52677e;
+    border-radius: 9px;
+
+    background-color: #222f40;
+    color: #e2e8f0;
+
+    font-size: 16px;
+    font-family: inherit;
+
+    outline: none;
+    transition: transform 0.2s ease;
+}
+
+.input1_style::placeholder {
+    color: #94a3b8;
+}
+
+.input1_style:focus {
+    border-color: #7dd3fc;
+    transform: scale(1.02);
+}
+
+
+/* ВЫПАДАЮЩИЙ СПИСОК ГОРОДОВ */
 
 .select1_style {
     width: 280px;
+    min-width: 220px;
+    max-width: 85vw;
 
-    padding: 12px;
+    height: 46px;
+    padding: 0 12px;
 
-    border: 1px solid #94a3b8;
-    border-radius: 10px;
+    border: 1px solid #52677e;
+    border-radius: 9px;
 
-    background-color: #ffffff;
-    color: #1e293b;
+    background-color: #222f40;
+    color: #e2e8f0;
 
     font-size: 16px;
-
     font-family: inherit;
+
+    cursor: pointer;
 }
 
 
@@ -75,24 +120,27 @@ body {
 
 .button1_style {
     width: 280px;
-    height: 50px;
+    min-width: 220px;
+    max-width: 85vw;
 
-    border: 1px solid #2563eb;
-    border-radius: 10px;
+    height: 48px;
 
-    background-color: #3b82f6;
-    color: white;
+    border: 1px solid #0284c7;
+    border-radius: 9px;
+
+    background-color: #0369a1;
+    color: #f0f9ff;
 
     font-size: 16px;
     font-weight: 600;
+    font-family: inherit;
 
     cursor: pointer;
-
     transition: transform 0.2s ease;
 }
 
 .button1_style:hover {
-    background-color: #2563eb;
+    background-color: #0284c7;
     transform: scale(1.03);
 }
 
@@ -101,28 +149,30 @@ body {
 }
 
 
-/* КНОПКА ОБНОВЛЕНИЯ */
+/* КНОПКА ОБНОВЛЕНИЯ ПОГОДЫ */
 
 .button2_style {
     width: 180px;
-    height: 45px;
+    min-width: 150px;
 
-    border: 1px solid #64748b;
-    border-radius: 10px;
+    height: 42px;
 
-    background-color: #475569;
-    color: white;
+    border: 1px solid #52677e;
+    border-radius: 9px;
+
+    background-color: #334155;
+    color: #e2e8f0;
 
     font-size: 15px;
     font-weight: 600;
+    font-family: inherit;
 
     cursor: pointer;
-
     transition: transform 0.2s ease;
 }
 
 .button2_style:hover {
-    background-color: #64748b;
+    background-color: #475569;
     transform: scale(1.03);
 }
 
