@@ -109,7 +109,7 @@ function userSelect() {
             lon = city.lon;
             apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,cloud_cover&hourly=temperature_2m&daily=temperature_2m_min,temperature_2m_max&timezone=auto`;
             cityFound = true;
-            p_city.textContent = `${city.status}: ${city.name}\n(координаты:\nдолгота: ${city.lon}\nширота: ${city.lat})`;
+            p_city.textContent = `${city.status}: ${city.name}\nкоординаты:\nдолгота: ${city.lon}\nширота: ${city.lat}`;
             break;
         }
     }
