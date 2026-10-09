@@ -3,8 +3,8 @@ const button2 = document.getElementById("btn2");
 const select = document.getElementById("slct1");
 const p_error = document.getElementById("p1");
 const p_time = document.getElementById("p2");
-const p_temperature = document.getElementById("p4");
-const p_city = document.getElementById("p3");
+const p_temperature = document.getElementById("p3");
+const p_city = document.getElementById("p4");
 const search_city = document.getElementById("npt1");
 
 p_error.textContent = "";
