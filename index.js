@@ -3,7 +3,8 @@ const button2 = document.getElementById("btn2");
 const select = document.getElementById("slct1");
 const p_error = document.getElementById("p1");
 const p_time = document.getElementById("p2");
-const p_temperature = document.getElementById("p3");
+const p_temperature = document.getElementById("p4");
+const p_city = document.getElementById("p3");
 const search_city = document.getElementById("npt1");
 
 p_error.textContent = "";
@@ -56,7 +57,7 @@ async function openMeteo() {
         const temperature = data.current.temperature_2m;
         const time = data.current.time.split("T")[1];
         
-        p_time.textContent = `Время: ${time}`;
+        p_time.textContent = `Последнее обновление данных: ${time}`;
         p_temperature.textContent = `${temperature}°C`;
         p_error.textContent = "";
     } catch (error) {
@@ -85,6 +86,7 @@ function userSelect() {
                 lon = city.lon;
                 apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,wind_speed_10m&hourly=temperature_2m&timezone=auto`;
                 cityFound = true;
+                p_city.textContent = `Город: ${city.name}`;
                 break;
             }
         }
@@ -106,6 +108,7 @@ function userSelect() {
                 lon = city.lon;
                 apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,wind_speed_10m&hourly=temperature_2m&timezone=auto`;
                 cityFound = true;
+                p_city.textContent = `Город: ${city.name}`;
                 break;
             }
         }
