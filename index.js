@@ -88,7 +88,6 @@ async function openMeteo() {
     } catch (error) {
         p_error.textContent = "Ошибка";
         p_time.textContent = "";
-        p_city.textContent = "";
         p_temperature.textContent = "";
         p_appTemp.textContent = "";
         p_relative.textContent = "";
