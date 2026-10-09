@@ -88,6 +88,7 @@ async function openMeteo() {
         weather.style.display = "none";
         p_error2.classList.add("p1_style");
         p_error2.textContent = "Ошибка загрузки данных";
+        p_error.textContent = "";
     }
 }
 
@@ -106,7 +107,7 @@ function userSelect() {
             p_error.textContent = "";
             lat = city.lat;
             lon = city.lon;
-            apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,cloud_cover&hourly=temperature_2m&timezone=auto`;
+            apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,cloud_cover&hourly=temperature_2m&daily=temperature_2m_min,temperature_2m_max&timezone=auto`;
             cityFound = true;
             p_city.textContent = `${city.status}: ${city.name}\n(координаты:\nдолгота: ${city.lon}\nширота: ${city.lat})`;
             break;
