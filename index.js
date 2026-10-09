@@ -56,7 +56,7 @@ async function openMeteo() {
 
         p_time.textContent = `Последнее обновление данных: ${time}`;
         p_temperature.textContent = `Температура: ${temperature}°C`;
-        p_maxMinTemp.textContent = `Максимальная температура: ${max_temp}\nМинимальная температура: ${min_temp}`;
+        p_maxMinTemp.textContent = `Минимальная температура: ${min_temp}\nМаксимальная температура: ${max_temp}`;
         p_appTemp.textContent = `Ощущается как: ${apparent}°C`;
         p_relative.textContent = `Влажность: ${relative}%`;
         p_speed.textContent = `Скорость ветра: ${speed} км/ч`;

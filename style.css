@@ -28,7 +28,7 @@ body {
 
 /* КАРТОЧКА С ПОГОДНЫМИ ДАННЫМИ */
 .div1_style {
-    width: 470px;
+    width: 500px;
     min-width: 280px;
     max-width: 90vw;
     display: flex;
