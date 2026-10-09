@@ -18,7 +18,6 @@ let lat = null;
 let lon = null;
 let data = [];
 let apiUrl = null;
-let isScrolled = false;
 
 async function getCityesApi() {
     try {
@@ -77,15 +76,12 @@ async function openMeteo() {
         p_error2.textContent = "";
         p_error.textContent = "";
         
-        if (isScrolled === false) {
-            weather.scrollIntoView({
+        weather.scrollIntoView({
             behavior: "smooth",
             block: "start"
-            });
+        });
 
-            isScrolled = true;
-        }
-        
+
         weather.style.display = "flex";
         weather.classList.add("div1_style");
         
