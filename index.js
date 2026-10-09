@@ -11,6 +11,7 @@ const p_relative = document.getElementById("p6");
 const p_speed = document.getElementById("p7");
 const p_cloud = document.getElementById("p8");
 const p_error2 = document.getElementById("p9");
+const p_maxMinTemp = document.getElementById("p10");
 
 p_error.textContent = "";
 
@@ -46,13 +47,16 @@ async function openMeteo() {
         const data = await response.json();
         const temperature = data.current.temperature_2m;
         const time = data.current.time.split("T")[1];
-        let apparent = data.current.apparent_temperature;
-        let relative = data.current.relative_humidity_2m;
-        let speed = data.current.wind_speed_10m;
-        let cloud = data.current.cloud_cover;
+        const apparent = data.current.apparent_temperature;
+        const relative = data.current.relative_humidity_2m;
+        const speed = data.current.wind_speed_10m;
+        const cloud = data.current.cloud_cover;
+        const min_temp = weather.daily.temperature_2m_min[0];
+        const max_temp = weather.daily.temperature_2m_max[0];
 
         p_time.textContent = `Последнее обновление данных: ${time}`;
         p_temperature.textContent = `Температура: ${temperature}°C`;
+        p_maxMinTemp.textContent = `Максимальная температура: ${max_temp}\nМинимальная температура: ${min_temp}`;
         p_appTemp.textContent = `Ощущается как: ${apparent}°C`;
         p_relative.textContent = `Влажность: ${relative}%`;
         p_speed.textContent = `Скорость ветра: ${speed} км/ч`;

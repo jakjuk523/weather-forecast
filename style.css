@@ -69,6 +69,7 @@ body {
     font-weight: 700;
     text-align: center;
     overflow-wrap: anywhere;
+    white-space: pre-line;
 }
 
 /* ОЩУЩАЕМАЯ ТЕМПЕРАТУРА */
