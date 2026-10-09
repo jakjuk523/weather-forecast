@@ -51,8 +51,8 @@ async function openMeteo() {
         const relative = data.current.relative_humidity_2m;
         const speed = data.current.wind_speed_10m;
         const cloud = data.current.cloud_cover;
-        const min_temp = weather.daily.temperature_2m_min[0];
-        const max_temp = weather.daily.temperature_2m_max[0];
+        const min_temp = data.daily.temperature_2m_min[0];
+        const max_temp = data.daily.temperature_2m_max[0];
 
         p_time.textContent = `Последнее обновление данных: ${time}`;
         p_temperature.textContent = `Температура: ${temperature}°C`;
