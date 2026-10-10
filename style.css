@@ -1,4 +1,7 @@
+/* ============================= */
 /* ОСНОВА СТРАНИЦЫ */
+/* ============================= */
+
 * {
     box-sizing: border-box;
 }
@@ -7,17 +10,25 @@ body {
     margin: 0;
     min-height: 100dvh;
     width: 100%;
+
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     gap: 20px;
+
     padding: 30px 0;
+
     background-color: #17212e;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+
+/* ============================= */
 /* СООБЩЕНИЯ ОБ ОШИБКАХ */
+/* ============================= */
+
+/* Ошибка над карточкой */
 .p1_style {
     margin: 0;
     color: #fca5a5;
@@ -26,31 +37,57 @@ body {
     text-align: center;
 }
 
-/* КАРТОЧКА С ПОГОДНЫМИ ДАННЫМИ */
+/* Ошибка загрузки данных */
+#p9 {
+    margin: 0;
+    color: #fca5a5;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+}
+
+
+/* ============================= */
+/* КАРТОЧКА С ПОГОДОЙ */
+/* ============================= */
+
 .div1_style {
-    width: 500px;
+    width: 440px;
     min-width: 280px;
     max-width: 90vw;
+
     display: flex;
     align-items: center;
     flex-direction: column;
     gap: 20px;
+
     padding: 32px 26px;
+
     border: 1px solid #3b5067;
     border-radius: 16px;
+
     background-color: #222f40;
 }
 
-/* ВРЕМЯ ПОСЛЕДНЕГО ОБНОВЛЕНИЯ */
+
+/* ============================= */
+/* ТЕКУЩЕЕ ВРЕМЯ */
+/* ============================= */
+
 .p2_style {
     margin: 0;
-    color: #94a3b8;
+    color: #cbd5e1;
     font-size: 22px;
     font-weight: 500;
     text-align: center;
+    overflow-wrap: anywhere;
 }
 
+
+/* ============================= */
 /* НАЗВАНИЕ ГОРОДА */
+/* ============================= */
+
 .p3_style {
     margin: 0;
     color: #e2e8f0;
@@ -58,21 +95,27 @@ body {
     font-weight: 600;
     text-align: center;
     overflow-wrap: anywhere;
-    white-space: pre-line;
 }
 
-/* ТЕМПЕРАТУРА */
+
+/* ============================= */
+/* ТЕКУЩАЯ ТЕМПЕРАТУРА */
+/* ============================= */
+
 .p4_style {
     margin: 0;
     color: #7dd3fc;
     font-size: 22px;
-    font-weight: 700;
+    font-weight: 600;
     text-align: center;
     overflow-wrap: anywhere;
-    white-space: pre-line;
 }
 
-/* ОЩУЩАЕМАЯ ТЕМПЕРАТУРА */
+
+/* ============================= */
+/* ДАТА */
+/* ============================= */
+
 .p5_style {
     margin: 0;
     color: #cbd5e1;
@@ -82,111 +125,282 @@ body {
     overflow-wrap: anywhere;
 }
 
-/* ОТНОСИТЕЛЬНАЯ ВЛАЖНОСТЬ */
+
+/* ============================= */
+/* ТЕКУЩАЯ ВЛАЖНОСТЬ */
+/* ============================= */
+
 .p6_style {
     margin: 0;
-    color: #a5c8e8;
+    color: #cbd5e1;
     font-size: 22px;
     font-weight: 500;
     text-align: center;
     overflow-wrap: anywhere;
 }
 
-/* СКОРОСТЬ ВЕТРА */
+
+/* ============================= */
+/* ТЕКУЩАЯ СКОРОСТЬ ВЕТРА */
+/* ============================= */
+
 .p7_style {
     margin: 0;
-    color: #a5c8e8;
+    color: #cbd5e1;
     font-size: 22px;
     font-weight: 500;
     text-align: center;
     overflow-wrap: anywhere;
 }
 
-/* ОБЛАЧНОСТЬ */
+
+/* ============================= */
+/* ТЕКУЩАЯ ОБЛАЧНОСТЬ */
+/* ============================= */
+
 .p8_style {
     margin: 0;
-    color: #a5c8e8;
+    color: #cbd5e1;
     font-size: 22px;
     font-weight: 500;
     text-align: center;
     overflow-wrap: anywhere;
 }
 
+
+/* ============================= */
+/* МАКСИМАЛЬНАЯ И МИНИМАЛЬНАЯ ТЕМПЕРАТУРА */
+/* ============================= */
+
+#p10 {
+    margin: 0;
+    color: #7dd3fc;
+    font-size: 22px;
+    font-weight: 500;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+
+/* ============================= */
+/* ОПИСАНИЕ ПОГОДЫ */
+/* ============================= */
+
+.p11_style {
+    margin: 0;
+    color: #cbd5e1;
+    font-size: 22px;
+    font-weight: 500;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+
+/* ============================= */
+/* НАПРАВЛЕНИЕ ВЕТРА */
+/* ============================= */
+
+.p12_style {
+    margin: 0;
+    color: #cbd5e1;
+    font-size: 22px;
+    font-weight: 500;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+
+/* ============================= */
+/* ОСАДКИ */
+/* ============================= */
+
+.p13_style {
+    margin: 0;
+    color: #cbd5e1;
+    font-size: 22px;
+    font-weight: 500;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+
+/* ============================= */
+/* ВРЕМЯ ВОСХОДА СОЛНЦА */
+/* ============================= */
+
+.p14_style {
+    margin: 0;
+    color: #cbd5e1;
+    font-size: 22px;
+    font-weight: 500;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+
+/* ============================= */
+/* ВРЕМЯ ЗАКАТА СОЛНЦА */
+/* ============================= */
+
+.p15_style {
+    margin: 0;
+    color: #cbd5e1;
+    font-size: 22px;
+    font-weight: 500;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+
+/* ============================= */
+/* ОЩУЩАЕМАЯ ТЕМПЕРАТУРА */
+/* ============================= */
+
+.p16_style {
+    margin: 0;
+    color: #7dd3fc;
+    font-size: 22px;
+    font-weight: 500;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+
+/* ============================= */
+/* СРЕДНЯЯ ВЛАЖНОСТЬ ЗА ДЕНЬ */
+/* ============================= */
+
+.p17_style {
+    margin: 0;
+    color: #cbd5e1;
+    font-size: 22px;
+    font-weight: 500;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+
+/* ============================= */
+/* СРЕДНЯЯ СКОРОСТЬ ВЕТРА ЗА ДЕНЬ */
+/* ============================= */
+
+.p18_style {
+    margin: 0;
+    color: #cbd5e1;
+    font-size: 22px;
+    font-weight: 500;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+
+/* ============================= */
 /* ПОЛЕ ПОИСКА ГОРОДА */
+/* ============================= */
+
 .input1_style {
     width: 280px;
     min-width: 220px;
     max-width: 85vw;
     height: 46px;
+
     padding: 0 14px;
+
     border: 1px solid #52677e;
     border-radius: 9px;
+
     background-color: #222f40;
     color: #e2e8f0;
+
     font-size: 16px;
     font-family: inherit;
+
     outline: none;
     transition: transform 0.2s ease;
 }
 
+/* Подсказка внутри поля */
 .input1_style::placeholder {
     color: #94a3b8;
 }
 
+/* Поле при выборе */
 .input1_style:focus {
     border-color: #7dd3fc;
     transform: scale(1.02);
 }
 
+
+/* ============================= */
 /* КНОПКА ВЫБОРА ГОРОДА */
+/* ============================= */
+
 .button1_style {
     width: 280px;
     min-width: 220px;
     max-width: 85vw;
     min-height: 48px;
+
     padding: 8px 12px;
+
     border: 1px solid #0284c7;
     border-radius: 9px;
+
     background-color: #0369a1;
     color: #f0f9ff;
+
     font-size: 16px;
     font-weight: 600;
     font-family: inherit;
+
     cursor: pointer;
     transition: transform 0.2s ease;
 }
 
+/* Наведение на кнопку */
 .button1_style:hover {
     background-color: #0284c7;
     transform: scale(1.03);
 }
 
+/* Нажатие на кнопку */
 .button1_style:active {
     transform: scale(0.97);
 }
 
+
+/* ============================= */
 /* КНОПКА ОБНОВЛЕНИЯ ПОГОДЫ */
+/* ============================= */
+
 .button2_style {
     width: 180px;
     min-width: 150px;
     min-height: 42px;
+
     padding: 8px 12px;
+
     border: 1px solid #52677e;
     border-radius: 9px;
+
     background-color: #334155;
     color: #e2e8f0;
+
     font-size: 15px;
     font-weight: 600;
     font-family: inherit;
+
     cursor: pointer;
     transition: transform 0.2s ease;
 }
 
+/* Наведение на кнопку */
 .button2_style:hover {
     background-color: #475569;
     transform: scale(1.03);
 }
 
+/* Нажатие на кнопку */
 .button2_style:active {
     transform: scale(0.97);
 }
