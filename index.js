@@ -19,7 +19,26 @@ const p_sunrise = document.getElementById("p14");
 const p_sunset = document.getElementById("p15");
 const p_apparentMinMax = document.getElementById("p16");
 const p_dailyHumidity = document.getElementById("p17");
-const p_dailyWindSpeed = document.getElementById("p18");
+const p_p = document.getElementById("p18");
+
+const buttonToday = document.getElementById("btn3");
+const buttonTomorrow = document.getElementById("btn4");
+const buttonOvermorrow = document.getElementById("btn5");
+const buttonDays_style = document.querySelectorAll(".buttonDays_style");
+
+buttonDays_style.forEach(button => {
+    button.addEventListener("click", () => {
+        buttonDays_style.forEach(item => {
+            item.classList.remove("active");
+        });
+
+        button.classList.add("active");
+    });
+});
+
+// Выбираем сегодняшний день при загрузке страницы
+document.getElementById("btn3").click();
+
 
 p_error.textContent = "";
 
@@ -40,6 +59,7 @@ async function getCityesApi() {
     }
 }
 
+
 function whatDay(selectedDay, weatherData) {
     
     const time = weatherData.current.time.split("T")[1];
@@ -59,14 +79,14 @@ function whatDay(selectedDay, weatherData) {
     const cloud = weatherData.daily.cloud_cover_mean[selectedDay];
     
     const precipitation = weatherData.daily.precipitation_sum[selectedDay];
-    const sunrise = weatherData.daily.sunrise[selectedDay];
-    const sunset = weatherData.daily.sunset[selectedDay];
+    const sunrise = weatherData.daily.sunrise[selectedDay].split("T")[1];
+    const sunset = weatherData.daily.sunset[selectedDay].split("T")[1];
     
     p_date.textContent = `Дата: ${date}`
     p_time.textContent = `Время текущих погодных данных: ${time}`;
     p_temperature.textContent = `средняя температура за день: ${temperature}°C`;
     p_maxMinTemp.textContent = `Диапозон: ${min_temp}°C - ${max_temp}°C`;
-    p_speed.textContent = `Скорость ветра: ${speed} км/ч`;
+    p_speed.textContent = `Максимальная скорость ветра за день: ${speed} км/ч`;
     p_cloud.textContent = `Облачность: ${cloud}%`;
     p_weather.textContent = `Код погоды: ${weatherCode}`;
     p_windDirection.textContent = `Направление ветра: ${windDirection}°`;
@@ -75,10 +95,32 @@ function whatDay(selectedDay, weatherData) {
     p_sunset.textContent = `Закат солнца: ${sunset}`;
     p_apparentMinMax.textContent = `Ощущаемая температура: ${apparentMin}°C — ${apparentMax}°C`;
     p_dailyHumidity.textContent = `Средняя влажность за день: ${relative}%`;
-    p_dailyWindSpeed.textContent = `Максимальная скорость ветра за день: ${speed} км/ч`;
     p_error2.textContent = "";
+    p_error2.classList.remove("p1_style");
     p_error.textContent = "";
 }
+
+function weatherToday() {
+    if (!weatherData) return;
+    
+    selectedDay = 0;
+    whatDay(selectedDay, weatherData);
+}
+
+function weatherTomorrow() {
+    if (!weatherData) return;
+    
+    selectedDay = 1;
+    whatDay(selectedDay, weatherData);
+}
+
+function weatherOvermorrow() {
+    if (!weatherData) return;
+    
+    selectedDay = 2;
+    whatDay(selectedDay, weatherData);
+}
+
 
 async function openMeteo() {
     try {
@@ -98,12 +140,12 @@ async function openMeteo() {
 
         whatDay(selectedDay, weatherData);
         
+        weather.style.display = "flex";
         weather.scrollIntoView({
             behavior: "smooth",
             block: "start"
         });
 
-        weather.style.display = "flex";
         weather.classList.add("div1_style");
 
     } catch (error) {
@@ -121,7 +163,6 @@ async function openMeteo() {
         p_sunset.textContent = "" ;
         p_apparentMinMax.textContent = "" ;
         p_dailyHumidity.textContent = "" ;
-        p_dailyWindSpeed.textContent = "" ;
         
         
         p_error2.classList.add("p1_style");
@@ -173,3 +214,7 @@ loadCityes();
 
 button.addEventListener("click", userSelect);
 button2.addEventListener("click", openMeteo);
+buttonToday.addEventListener("click", weatherToday);
+buttonTomorrow.addEventListener("click", weatherTomorrow);
+buttonOvermorrow.addEventListener("click", weatherOvermorrow);
+
