@@ -19,7 +19,7 @@ const p_sunrise = document.getElementById("p14");
 const p_sunset = document.getElementById("p15");
 const p_apparentMinMax = document.getElementById("p16");
 const p_dailyHumidity = document.getElementById("p17");
-const p_p = document.getElementById("p18");
+const p_сoordinats = document.getElementById("p18");
 
 const buttonToday = document.getElementById("btn3");
 const buttonTomorrow = document.getElementById("btn4");
@@ -189,7 +189,8 @@ function userSelect() {
             lon = city.lon;
             apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,cloud_cover&hourly=temperature_2m&daily=temperature_2m_mean,weather_code,temperature_2m_min,temperature_2m_max,apparent_temperature_min,apparent_temperature_max,relative_humidity_2m_mean,wind_speed_10m_max,wind_direction_10m_dominant,cloud_cover_mean,precipitation_sum,sunrise,sunset&timezone=auto`;
             cityFound = true;
-            p_city.textContent = `${city.status}: ${city.name}\nкоординаты:\nдолгота: ${city.lon}\nширота: ${city.lat}`;
+            p_city.textContent = `${city.status}: ${city.name}`;
+            p_сoordinats.textContent = `Долгота: ${city.lat}, Широта: ${city.lon}`;
             break;
         }
     }
