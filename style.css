@@ -5,11 +5,14 @@
 body {
     background-color: #111827;
     color: #cbd5e1;
+
     padding: 20px;
     margin: 0;
+
     font-family: Arial, sans-serif;
     font-size: 20px;
     text-align: center;
+
     box-sizing: border-box;
 }
 
@@ -20,9 +23,12 @@ body {
 
 .p1_style {
     color: #f87171;
+
     font-family: Arial, sans-serif;
-    font-size: 24px;
+    font-size: 26px;
+
     margin: 15px auto;
+
     width: 90%;
     max-width: 700px;
     box-sizing: border-box;
@@ -30,8 +36,10 @@ body {
 
 #p9 {
     color: #f87171;
+
     font-family: Arial, sans-serif;
     font-size: 20px;
+
     margin: 15px auto;
 }
 
@@ -46,7 +54,7 @@ body {
     background-color: #1f2937;
     color: #e2e8f0;
 
-    padding: 14px 18px;
+    padding: 16px 20px;
     margin: 15px auto;
 
     border: 2px solid #4b5563;
@@ -57,6 +65,7 @@ body {
 
     width: 90%;
     max-width: 500px;
+
     box-sizing: border-box;
 }
 
@@ -72,7 +81,7 @@ body {
     background-color: #334155;
     color: #e2e8f0;
 
-    padding: 14px 20px;
+    padding: 16px 20px;
     margin: 15px auto;
 
     border: 2px solid #475569;
@@ -83,6 +92,7 @@ body {
 
     width: 90%;
     max-width: 500px;
+
     box-sizing: border-box;
 
     cursor: pointer;
@@ -109,7 +119,7 @@ body {
 .div2_style {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
 
     background-color: #111827;
     color: #cbd5e1;
@@ -122,6 +132,7 @@ body {
 
     width: 95%;
     max-width: 1400px;
+
     box-sizing: border-box;
 }
 
@@ -134,6 +145,7 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+
     justify-content: center;
     align-items: center;
 
@@ -147,6 +159,7 @@ body {
     border-radius: 15px;
 
     width: 100%;
+
     box-sizing: border-box;
 }
 
@@ -185,6 +198,7 @@ body {
 .buttonDays_style.active {
     background-color: #36536d;
     color: #f1f5f9;
+
     border: 1px solid #7dd3fc;
 }
 
@@ -211,6 +225,7 @@ body {
     font-size: 20px;
 
     width: 100%;
+
     box-sizing: border-box;
 }
 
@@ -221,22 +236,29 @@ body {
 
 .div1_style p {
     color: #d1dbe8;
+
     font-family: Arial, sans-serif;
     font-size: 20px;
+
     margin: 10px 0;
 }
 
 
 /* ========================================
    10. ОСНОВНАЯ ИНФОРМАЦИЯ
-   div4_style:
-   p5 — дата
-   p2 — время
-   p3 — город
+   div4_style
+
+   p5  — дата
+   p2  — время
+   p3  — город
    p18 — координаты
 ======================================== */
 
 .div4_style {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
     background-color: #26384b;
     color: #d1dbe8;
 
@@ -247,19 +269,25 @@ body {
     border-radius: 14px;
 
     width: 100%;
+
     box-sizing: border-box;
 }
 
 
 /* ========================================
    11. ТЕМПЕРАТУРА
-   div5_style:
-   p4 — средняя температура
+   div5_style
+
+   p4  — средняя температура
    p10 — диапазон температур
    p16 — ощущаемая температура
 ======================================== */
 
 .div5_style {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
     background-color: #203c50;
     color: #d1dbe8;
 
@@ -270,6 +298,7 @@ body {
     border-radius: 14px;
 
     width: 100%;
+
     box-sizing: border-box;
 }
 
@@ -280,12 +309,17 @@ body {
 
 /* ========================================
    12. ПОГОДНЫЕ УСЛОВИЯ
-   div6_style:
+   div6_style
+
    p11 — код погоды
-   p8 — облачность
+   p8  — облачность
 ======================================== */
 
 .div6_style {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
     background-color: #29374b;
     color: #d1dbe8;
 
@@ -296,18 +330,24 @@ body {
     border-radius: 14px;
 
     width: 100%;
+
     box-sizing: border-box;
 }
 
 
 /* ========================================
    13. ВЕТЕР
-   div7_style:
-   p7 — скорость ветра
+   div7_style
+
+   p7  — скорость ветра
    p12 — направление ветра
 ======================================== */
 
 .div7_style {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
     background-color: #253b43;
     color: #d1dbe8;
 
@@ -318,18 +358,24 @@ body {
     border-radius: 14px;
 
     width: 100%;
+
     box-sizing: border-box;
 }
 
 
 /* ========================================
    14. ОСАДКИ И ВЛАЖНОСТЬ
-   div8_style:
+   div8_style
+
    p13 — осадки
    p17 — влажность
 ======================================== */
 
 .div8_style {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
     background-color: #30364a;
     color: #d1dbe8;
 
@@ -340,18 +386,24 @@ body {
     border-radius: 14px;
 
     width: 100%;
+
     box-sizing: border-box;
 }
 
 
 /* ========================================
    15. ВОСХОД И ЗАКАТ
-   div9_style:
+   div9_style
+
    p14 — восход солнца
    p15 — закат солнца
 ======================================== */
 
 .div9_style {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
     background-color: #3a3548;
     color: #d1dbe8;
 
@@ -362,5 +414,6 @@ body {
     border-radius: 14px;
 
     width: 100%;
+
     box-sizing: border-box;
 }
