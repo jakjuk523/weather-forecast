@@ -21,10 +21,13 @@ const p_apparentMinMax = document.getElementById("p16");
 const p_dailyHumidity = document.getElementById("p17");
 const p_сoordinats = document.getElementById("p18");
 
+
+const buttonDays_style = document.querySelectorAll(".buttonDays_style");
+
 const buttonToday = document.getElementById("btn3");
 const buttonTomorrow = document.getElementById("btn4");
 const buttonOvermorrow = document.getElementById("btn5");
-const buttonDays_style = document.querySelectorAll(".buttonDays_style");
+
 
 buttonDays_style.forEach(button => {
     button.addEventListener("click", () => {
@@ -140,6 +143,10 @@ async function openMeteo() {
 
         whatDay(selectedDay, weatherData);
         
+        buttonToday.style.display = "flex";
+        buttonTomorrow.style.display = "flex";
+        buttonOvermorrow.style.display = "flex";
+        
         weather.style.display = "flex";
         weather.scrollIntoView({
             behavior: "smooth",
@@ -169,6 +176,10 @@ async function openMeteo() {
         p_error2.textContent = "Ошибка загрузки данных";
         p_error.textContent = "Ошибка";
         weather.style.display = "none";
+        
+        buttonToday.style.display = "none";
+        buttonTomorrow.style.display = "none";
+        buttonOvermorrow.style.display = "none";
     }
 }
 
