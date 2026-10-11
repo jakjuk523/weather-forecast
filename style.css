@@ -1,419 +1,645 @@
-/* ========================================
-   1. ОСНОВНАЯ СТРАНИЦА
-======================================== */
+/* ======================================== */
+/* 1. ОСНОВА СТРАНИЦЫ */
+/* ======================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    color-scheme: dark;
+
+    --color-background: #101722;
+    --color-card: #1b2736;
+    --color-card-light: #243449;
+    --color-border: #35485e;
+
+    --color-text: #e2e8f0;
+    --color-text-secondary: #a8b7ca;
+    --color-text-muted: #8294aa;
+
+    --color-accent: #7dd3fc;
+    --color-accent-strong: #38bdf8;
+    --color-accent-background: #123a54;
+
+    --color-error: #fca5a5;
+
+    --radius-small: 8px;
+    --radius-medium: 12px;
+    --radius-large: 18px;
+
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+}
 
 body {
-    background-color: #111827;
-    color: #cbd5e1;
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+    width: 100%;
 
-    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 18px;
+
+    padding: 36px 20px;
+
+    background:
+        radial-gradient(
+            ellipse at top,
+            #20344a 0%,
+            var(--color-background) 65%
+        );
+
+    color: var(--color-text);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+
+/* ======================================== */
+/* 2. СООБЩЕНИЯ ОБ ОШИБКАХ */
+/* ======================================== */
+
+.p1_style,
+#p9 {
+    max-width: 530px;
     margin: 0;
 
-    font-family: Arial, sans-serif;
-    font-size: 20px;
+    color: var(--color-error);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+
     text-align: center;
+    overflow-wrap: anywhere;
+}
 
-    box-sizing: border-box;
+.p1_style:empty,
+#p9:empty {
+    display: none;
 }
 
 
-/* ========================================
-   2. СООБЩЕНИЕ ОБ ОШИБКЕ
-======================================== */
-
-.p1_style {
-    color: #f87171;
-
-    font-family: Arial, sans-serif;
-    font-size: 26px;
-
-    margin: 15px auto;
-
-    width: 90%;
-    max-width: 700px;
-    box-sizing: border-box;
-}
-
-#p9 {
-    color: #f87171;
-
-    font-family: Arial, sans-serif;
-    font-size: 20px;
-
-    margin: 15px auto;
-}
-
-
-/* ========================================
-   3. ПОЛЕ ПОИСКА ГОРОДА
-======================================== */
-
-.input1_style {
-    display: block;
-
-    background-color: #1f2937;
-    color: #e2e8f0;
-
-    padding: 16px 20px;
-    margin: 15px auto;
-
-    border: 2px solid #4b5563;
-    border-radius: 12px;
-
-    font-family: Arial, sans-serif;
-    font-size: 22px;
-
-    width: 90%;
-    max-width: 500px;
-
-    box-sizing: border-box;
-}
-
-
-/* ========================================
-   4. ОСНОВНЫЕ КНОПКИ
-======================================== */
-
-.button1_style,
-.button2_style {
-    display: block;
-
-    background-color: #334155;
-    color: #e2e8f0;
-
-    padding: 16px 20px;
-    margin: 15px auto;
-
-    border: 2px solid #475569;
-    border-radius: 14px;
-
-    font-family: Arial, sans-serif;
-    font-size: 22px;
-
-    width: 90%;
-    max-width: 500px;
-
-    box-sizing: border-box;
-
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
-.button1_style:hover,
-.button2_style:hover {
-    background-color: #40536a;
-    transform: scale(1.02);
-}
-
-.button1_style:active,
-.button2_style:active {
-    background-color: #263548;
-    transform: scale(0.98);
-}
-
-
-/* ========================================
-   5. КОНТЕЙНЕР ДНЕЙ И ПОГОДЫ
-======================================== */
+/* ======================================== */
+/* 3. КОНТЕЙНЕР КНОПОК И КАРТОЧКИ */
+/* ======================================== */
 
 .div2_style {
+    width: 530px;
+    max-width: 100%;
+
     display: flex;
     flex-direction: column;
     align-items: stretch;
-
-    background-color: #111827;
-    color: #cbd5e1;
-
-    padding: 20px;
-    margin: 25px auto;
-
-    border: 2px solid #374151;
-    border-radius: 20px;
-
-    width: 95%;
-    max-width: 1400px;
-
-    box-sizing: border-box;
+    gap: 8px;
 }
 
 
-/* ========================================
-   6. КОНТЕЙНЕР КНОПОК ДНЕЙ
-======================================== */
+/* ======================================== */
+/* 4. КОНТЕЙНЕР КНОПОК ВЫБОРА ДНЯ */
+/* ======================================== */
 
 .div3_style {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-
-    justify-content: center;
     align-items: center;
-
-    background-color: #1f2937;
-    color: #cbd5e1;
-
-    padding: 15px;
-    margin: 10px 0 20px 0;
-
-    border: 1px solid #374b60;
-    border-radius: 15px;
-
-    width: 100%;
-
-    box-sizing: border-box;
+    flex-wrap: wrap;
+    gap: 6px;
 }
 
 
-/* ========================================
-   7. КНОПКИ ВЫБОРА ДНЯ
-======================================== */
+/* ======================================== */
+/* 5. КНОПКИ ВЫБОРА ДНЯ */
+/* ======================================== */
 
 .buttonDays_style {
-    background-color: #293548;
-    color: #cbd5e1;
+    width: fit-content;
+    min-height: 34px;
+    padding: 6px 12px;
 
-    padding: 12px 16px;
-    margin: 5px;
+    border: 1px solid transparent;
+    border-radius: var(--radius-small);
 
-    border: 1px solid #475569;
-    border-radius: 12px;
+    background-color: transparent;
+    color: var(--color-text-secondary);
 
-    font-family: Arial, sans-serif;
-    font-size: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    line-height: 1.3;
 
+    white-space: nowrap;
     cursor: pointer;
-    transition: transform 0.2s ease;
+
+    transition:
+        background-color var(--transition-fast),
+        color var(--transition-fast),
+        border-color var(--transition-fast),
+        transform var(--transition-fast);
 }
+
+/* Наведение на кнопку */
 
 .buttonDays_style:hover {
-    background-color: #3b4b60;
-    transform: scale(1.02);
+    background-color: var(--color-card-light);
+    color: var(--color-text);
 }
+
+/* Нажатие мышью */
 
 .buttonDays_style:active {
-    background-color: #263548;
-    transform: scale(0.98);
+    transform: scale(0.96);
 }
+
+/* Выбранный день */
 
 .buttonDays_style.active {
-    background-color: #36536d;
-    color: #f1f5f9;
+    border-color: #3b82a0;
+    background-color: var(--color-accent-background);
+    color: var(--color-accent);
 
-    border: 1px solid #7dd3fc;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
+}
+
+/* Клавиатурный фокус */
+
+.buttonDays_style:focus-visible,
+.button1_style:focus-visible,
+.button2_style:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
 }
 
 
-/* ========================================
-   8. ОСНОВНАЯ КАРТОЧКА ПОГОДЫ
-======================================== */
+/* ======================================== */
+/* 6. КАРТОЧКА С ПОГОДОЙ */
+/* ======================================== */
 
 .div1_style {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-
-    background-color: #172334;
-    color: #cbd5e1;
-
-    padding: 20px;
-    margin: 10px 0;
-
-    border: 2px solid #374b60;
-    border-radius: 20px;
-
-    font-family: Arial, sans-serif;
-    font-size: 20px;
-
     width: 100%;
+    min-width: 0;
 
-    box-sizing: border-box;
-}
-
-
-/* ========================================
-   9. ОБЩИЕ НАСТРОЙКИ ТЕКСТА ПОГОДЫ
-======================================== */
-
-.div1_style p {
-    color: #d1dbe8;
-
-    font-family: Arial, sans-serif;
-    font-size: 20px;
-
-    margin: 10px 0;
-}
-
-
-/* ========================================
-   10. ОСНОВНАЯ ИНФОРМАЦИЯ
-   div4_style
-
-   p5  — дата
-   p2  — время
-   p3  — город
-   p18 — координаты
-======================================== */
-
-.div4_style {
     display: flex;
+    align-items: center;
     flex-direction: column;
-    align-items: stretch;
+    gap: 18px;
 
-    background-color: #26384b;
-    color: #d1dbe8;
+    padding: 32px 26px;
 
-    padding: 15px;
-    margin: 10px 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-large);
 
-    border: 1px solid #40536a;
-    border-radius: 14px;
+    background: linear-gradient(
+        145deg,
+        #202f41 0%,
+        var(--color-card) 75%
+    );
 
-    width: 100%;
+    box-shadow:
+        0 16px 40px rgb(0 0 0 / 18%),
+        inset 0 1px 0 rgb(255 255 255 / 3%);
 
-    box-sizing: border-box;
+    animation: card-appear 0.45s ease both;
+}
+
+/* Появление карточки */
+
+@keyframes card-appear {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 
-/* ========================================
-   11. ТЕМПЕРАТУРА
-   div5_style
+/* ======================================== */
+/* 7. ОБЩИЕ СТИЛИ ТЕКСТА В КАРТОЧКЕ */
+/* ======================================== */
 
-   p4  — средняя температура
-   p10 — диапазон температур
-   p16 — ощущаемая температура
-======================================== */
+.p2_style,
+.p3_style,
+.p4_style,
+.p5_style,
+.p6_style,
+.p7_style,
+.p8_style,
+#p10,
+.p11_style,
+.p12_style,
+.p13_style,
+.p14_style,
+.p15_style,
+.p16_style,
+.p17_style,
+.p18_style {
+    max-width: 100%;
+    margin: 0;
 
-.div5_style {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
+    text-align: center;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
 
-    background-color: #203c50;
-    color: #d1dbe8;
-
-    padding: 15px;
-    margin: 10px 0;
-
-    border: 1px solid #376079;
-    border-radius: 14px;
-
-    width: 100%;
-
-    box-sizing: border-box;
-}
-
-.div5_style p {
-    color: #7dd3fc;
-}
-
-
-/* ========================================
-   12. ПОГОДНЫЕ УСЛОВИЯ
-   div6_style
-
-   p11 — код погоды
-   p8  — облачность
-======================================== */
-
-.div6_style {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-
-    background-color: #29374b;
-    color: #d1dbe8;
-
-    padding: 15px;
-    margin: 10px 0;
-
-    border: 1px solid #46566c;
-    border-radius: 14px;
-
-    width: 100%;
-
-    box-sizing: border-box;
+    font-size: 16px;
 }
 
 
-/* ========================================
-   13. ВЕТЕР
-   div7_style
+/* ======================================== */
+/* 8. ВРЕМЯ */
+/* ======================================== */
 
-   p7  — скорость ветра
-   p12 — направление ветра
-======================================== */
-
-.div7_style {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-
-    background-color: #253b43;
-    color: #d1dbe8;
-
-    padding: 15px;
-    margin: 10px 0;
-
-    border: 1px solid #3d5a61;
-    border-radius: 14px;
-
-    width: 100%;
-
-    box-sizing: border-box;
+.p2_style {
+    color: var(--color-text-muted);
+    font-weight: 500;
+    letter-spacing: 0.2px;
 }
 
 
-/* ========================================
-   14. ОСАДКИ И ВЛАЖНОСТЬ
-   div8_style
+/* ======================================== */
+/* 9. НАЗВАНИЕ ГОРОДА */
+/* ======================================== */
 
-   p13 — осадки
-   p17 — влажность
-======================================== */
-
-.div8_style {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-
-    background-color: #30364a;
-    color: #d1dbe8;
-
-    padding: 15px;
-    margin: 10px 0;
-
-    border: 1px solid #4b526b;
-    border-radius: 14px;
-
-    width: 100%;
-
-    box-sizing: border-box;
+.p3_style {
+    color: var(--color-text);
+    font-weight: 700;
 }
 
 
-/* ========================================
-   15. ВОСХОД И ЗАКАТ
-   div9_style
+/* ======================================== */
+/* 10. ТЕКУЩАЯ ТЕМПЕРАТУРА */
+/* ======================================== */
 
-   p14 — восход солнца
-   p15 — закат солнца
-======================================== */
+.p4_style {
+    color: var(--color-accent);
+    font-weight: 700;
+}
 
-.div9_style {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
+/* Дополнительная информация о температуре */
 
-    background-color: #3a3548;
-    color: #d1dbe8;
+#p10 {
+    color: var(--color-accent);
+    font-weight: 500;
+}
 
-    padding: 15px;
-    margin: 10px 0;
 
-    border: 1px solid #5a506a;
-    border-radius: 14px;
+/* ======================================== */
+/* 11. ДАТА */
+/* ======================================== */
 
-    width: 100%;
+.p5_style {
+    color: var(--color-text-muted);
+    font-weight: 500;
+}
 
-    box-sizing: border-box;
+
+/* ======================================== */
+/* 12. ТЕКУЩАЯ ВЛАЖНОСТЬ */
+/* ======================================== */
+
+.p6_style {
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+
+/* ======================================== */
+/* 13. ТЕКУЩАЯ СКОРОСТЬ ВЕТРА */
+/* ======================================== */
+
+.p7_style {
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+
+/* ======================================== */
+/* 14. ТЕКУЩАЯ ОБЛАЧНОСТЬ */
+/* ======================================== */
+
+.p8_style {
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+
+/* ======================================== */
+/* 15. ОПИСАНИЕ ПОГОДЫ */
+/* ======================================== */
+
+.p11_style {
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+
+/* ======================================== */
+/* 16. НАПРАВЛЕНИЕ ВЕТРА */
+/* ======================================== */
+
+.p12_style {
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+
+/* ======================================== */
+/* 17. ОСАДКИ */
+/* ======================================== */
+
+.p13_style {
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+
+/* ======================================== */
+/* 18. ВРЕМЯ ВОСХОДА СОЛНЦА */
+/* ======================================== */
+
+.p14_style {
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+
+/* ======================================== */
+/* 19. ВРЕМЯ ЗАКАТА СОЛНЦА */
+/* ======================================== */
+
+.p15_style {
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+
+/* ======================================== */
+/* 20. ОЩУЩАЕМАЯ ТЕМПЕРАТУРА */
+/* ======================================== */
+
+.p16_style {
+    color: var(--color-accent);
+    font-weight: 600;
+}
+
+
+/* ======================================== */
+/* 21. СРЕДНЯЯ ВЛАЖНОСТЬ ЗА ДЕНЬ */
+/* ======================================== */
+
+.p17_style {
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+
+/* ======================================== */
+/* 22. СРЕДНЯЯ СКОРОСТЬ ВЕТРА ЗА ДЕНЬ */
+/* ======================================== */
+
+.p18_style {
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+
+/* ======================================== */
+/* 23. ПОЛЕ ПОИСКА ГОРОДА */
+/* ======================================== */
+
+.input1_style {
+    width: 280px;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 46px;
+
+    padding: 0 15px;
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-medium);
+
+    background-color: var(--color-card);
+    color: var(--color-text);
+
+    font-size: 16px;
+    font-family: inherit;
+
+    outline: none;
+
+    transition:
+        border-color var(--transition-fast),
+        background-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+/* Подсказка внутри поля */
+
+.input1_style::placeholder {
+    color: var(--color-text-muted);
+}
+
+/* Поле при выборе */
+
+.input1_style:focus {
+    border-color: var(--color-accent-strong);
+    background-color: var(--color-card-light);
+
+    box-shadow: 0 0 0 3px rgb(56 189 248 / 12%);
+}
+
+
+/* ======================================== */
+/* 24. КНОПКА ВЫБОРА ГОРОДА */
+/* ======================================== */
+
+.button1_style {
+    width: 280px;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 48px;
+
+    padding: 10px 16px;
+
+    border: 1px solid #1687b8;
+    border-radius: var(--radius-medium);
+
+    background: linear-gradient(
+        135deg,
+        #087eaf,
+        #0369a1
+    );
+
+    color: #f0f9ff;
+
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 12px rgb(3 105 161 / 15%);
+
+    transition:
+        background-color var(--transition-fast),
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+/* Наведение на кнопку */
+
+.button1_style:hover {
+    border-color: #38bdf8;
+    background: linear-gradient(
+        135deg,
+        #0891b2,
+        #0284c7
+    );
+
+    box-shadow: 0 6px 16px rgb(3 105 161 / 25%);
+    transform: translateY(-1px);
+}
+
+/* Нажатие на кнопку */
+
+.button1_style:active {
+    box-shadow: none;
+    transform: translateY(1px) scale(0.99);
+}
+
+
+/* ======================================== */
+/* 25. КНОПКА ОБНОВЛЕНИЯ ПОГОДЫ */
+/* ======================================== */
+
+.button2_style {
+    width: 180px;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 42px;
+
+    padding: 9px 16px;
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-medium);
+
+    background-color: var(--color-card);
+    color: var(--color-text-secondary);
+
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition:
+        background-color var(--transition-fast),
+        border-color var(--transition-fast),
+        color var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+/* Наведение на кнопку */
+
+.button2_style:hover {
+    border-color: #52677e;
+    background-color: var(--color-card-light);
+    color: var(--color-text);
+
+    transform: translateY(-1px);
+}
+
+/* Нажатие на кнопку */
+
+.button2_style:active {
+    transform: translateY(1px) scale(0.99);
+}
+
+
+/* ======================================== */
+/* 26. АДАПТАЦИЯ ДЛЯ ПЛАНШЕТОВ */
+/* ======================================== */
+
+@media (max-width: 600px) {
+    body {
+        gap: 15px;
+        padding: 25px 16px;
+    }
+
+    .div2_style {
+        width: 100%;
+    }
+
+    .div1_style {
+        padding: 27px 20px;
+        gap: 16px;
+    }
+
+    .p3_style,
+    .p4_style {
+        font-size: 16px;
+    }
+
+    .buttonDays_style {
+        min-height: 36px;
+        padding: 7px 11px;
+    }
+}
+
+
+/* ======================================== */
+/* 27. АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ */
+/* ======================================== */
+
+@media (max-width: 380px) {
+    body {
+        gap: 12px;
+        padding: 20px 12px;
+    }
+
+    .div1_style {
+        padding: 24px 15px;
+        gap: 14px;
+
+        border-radius: var(--radius-medium);
+    }
+
+    .buttonDays_style {
+        padding: 6px 9px;
+        font-size: 12px;
+    }
+
+    .buttonDays_style.active {
+        padding: 6px 9px;
+    }
+
+    .p3_style,
+    .p4_style {
+        font-size: 16px;
+    }
+
+    .input1_style,
+    .button1_style {
+        width: 100%;
+    }
+}
+
+
+/* ======================================== */
+/* 28. УМЕНЬШЕНИЕ АНИМАЦИЙ ПО НАСТРОЙКАМ */
+/* ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }

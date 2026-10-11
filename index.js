@@ -1,418 +1,330 @@
-/* ========================================
-   1. ОСНОВНАЯ СТРАНИЦА
-======================================== */
+const weather = document.getElementById("dv1");
+const button = document.getElementById("btn1");
+const button2 = document.getElementById("btn2");
+const search_city = document.getElementById("npt1");
+const p_error = document.getElementById("p1");
+const p_time = document.getElementById("p2");
+const p_city = document.getElementById("p3");
+const p_temperature = document.getElementById("p4");
+const p_date = document.getElementById("p5");
+const p_relative = document.getElementById("p6");
+const p_speed = document.getElementById("p7");
+const p_cloud = document.getElementById("p8");
+const p_error2 = document.getElementById("p9");
+const p_maxMinTemp = document.getElementById("p10");
+const p_weather = document.getElementById("p11");
+const p_windDirection = document.getElementById("p12");
+const p_precipitation = document.getElementById("p13");
+const p_sunrise = document.getElementById("p14");
+const p_sunset = document.getElementById("p15");
+const p_apparentMinMax = document.getElementById("p16");
+const p_dailyHumidity = document.getElementById("p17");
+const p_coordinates = document.getElementById("p18");
 
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 
-    background-color: #111827;
-    color: #cbd5e1;
+const buttonDays_style = document.querySelectorAll(".buttonDays_style");
 
-    padding: 20px;
-    margin: 0;
+const buttonToday = document.getElementById("btn3");
+const buttonTomorrow = document.getElementById("btn4");
+const buttonOvermorrow = document.getElementById("btn5");
+const buttonFour = document.getElementById("btn6");
+const buttonFive = document.getElementById("btn7");
+const buttonSix = document.getElementById("btn8");
+const buttonSeven = document.getElementById("btn9");
 
-    font-family: Arial, sans-serif;
-    font-size: 20px;
-    text-align: center;
 
-    box-sizing: border-box;
+buttonDays_style.forEach(button => {
+    button.addEventListener("click", () => {
+        buttonDays_style.forEach(item => {
+            item.classList.remove("active");
+        });
+
+        button.classList.add("active");
+    });
+});
+
+
+// Выбираем сегодняшний день при загрузке страницы
+document.getElementById("btn3").click();
+
+
+p_error.textContent = "";
+
+let lat = null;
+let lon = null;
+let cityesData = [];
+let weatherData = null;
+let apiUrl = null;
+let selectedDay = 0;
+let months = [];
+
+
+async function getCityesApi() {
+    try {
+        const response = await fetch("cityes.json");
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        p_error.textContent = "Ошибка";
+    }
 }
 
 
-/* ========================================
-   2. СООБЩЕНИЕ ОБ ОШИБКЕ
-======================================== */
+function updateDaysButtons() {
+    const buttons = [
+        buttonToday, buttonTomorrow, buttonOvermorrow,
+        buttonFour, buttonFive, buttonSix, buttonSeven
+    ];
 
-.p1_style {
-    color: #f87171;
+    const dayNames = ["Сегодня", "Завтра", "Послезавтра"];
 
-    font-family: Arial, sans-serif;
-    font-size: 26px;
+    const today = new Date();
 
-    margin: 15px auto;
+    buttons.forEach((button, index) => {
+        if (index < 3) {
+            button.textContent = dayNames[index];
+        } else {
+            const date = new Date(today);
+            date.setDate(today.getDate() + index);
 
-    width: 90%;
-    max-width: 700px;
-    box-sizing: border-box;
+            button.textContent = new Intl.DateTimeFormat("ru-RU", {
+                day: "numeric",
+                month: "long"
+            }).format(date);
+        }
+    });
 }
 
-#p9 {
-    color: #f87171;
-
-    font-family: Arial, sans-serif;
-    font-size: 20px;
-
-    margin: 15px auto;
-}
+updateDaysButtons();
 
 
-/* ========================================
-   3. ПОЛЕ ПОИСКА ГОРОДА
-======================================== */
+function whatDay(selectedDay, weatherData) {
 
-.input1_style {
-    display: block;
+    const time = weatherData.current.time.split("T")[1];
+    const date = weatherData.daily.time[selectedDay];
 
-    background-color: #1f2937;
-    color: #e2e8f0;
+    const dateObject = new Date(date + "T12:00:00");
 
-    padding: 16px 20px;
-    margin: 15px auto;
+    const formattedDate = new Intl.DateTimeFormat("ru-RU", {
+        day: "numeric",
+        month: "long"
+    }).format(dateObject);
 
-    border: 2px solid #4b5563;
-    border-radius: 12px;
-
-    font-family: Arial, sans-serif;
-    font-size: 22px;
-
-    width: 90%;
-    max-width: 500px;
-
-    box-sizing: border-box;
-}
+    months = formattedDate;
 
 
-/* ========================================
-   4. ОСНОВНЫЕ КНОПКИ
-======================================== */
+    const weatherCode = weatherData.daily.weather_code[selectedDay];
+    const temperature = weatherData.daily.temperature_2m_mean[selectedDay];
+    const min_temp = weatherData.daily.temperature_2m_min[selectedDay];
+    const max_temp = weatherData.daily.temperature_2m_max[selectedDay];
 
-.button1_style,
-.button2_style {
-    display: block;
+    const apparentMin = weatherData.daily.apparent_temperature_min[selectedDay];
+    const apparentMax = weatherData.daily.apparent_temperature_max[selectedDay];
 
-    background-color: #334155;
-    color: #e2e8f0;
+    const relative = weatherData.daily.relative_humidity_2m_mean[selectedDay];
+    const speed = weatherData.daily.wind_speed_10m_max[selectedDay];
+    const windDirection = weatherData.daily.wind_direction_10m_dominant[selectedDay];
+    const cloud = weatherData.daily.cloud_cover_mean[selectedDay];
 
-    padding: 16px 20px;
-    margin: 15px auto;
+    const precipitation = weatherData.daily.precipitation_sum[selectedDay];
+    const sunrise = weatherData.daily.sunrise[selectedDay].split("T")[1];
+    const sunset = weatherData.daily.sunset[selectedDay].split("T")[1];
 
-    border: 2px solid #475569;
-    border-radius: 14px;
-
-    font-family: Arial, sans-serif;
-    font-size: 22px;
-
-    width: 90%;
-    max-width: 500px;
-
-    box-sizing: border-box;
-
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
-.button1_style:hover,
-.button2_style:hover {
-    background-color: #40536a;
-    transform: scale(1.02);
-}
-
-.button1_style:active,
-.button2_style:active {
-    background-color: #263548;
-    transform: scale(0.98);
+    p_date.textContent = `Дата: ${date}`;
+    p_time.textContent = `Время текущих погодных данных: ${time}`;
+    p_temperature.textContent = `средняя температура за день: ${temperature}°C`;
+    p_maxMinTemp.textContent = `Диапозон: ${min_temp}°C - ${max_temp}°C`;
+    p_speed.textContent = `Максимальная скорость ветра за день: ${speed} км/ч`;
+    p_cloud.textContent = `Облачность: ${cloud}%`;
+    p_weather.textContent = `Код погоды: ${weatherCode}`;
+    p_windDirection.textContent = `Направление ветра: ${windDirection}°`;
+    p_precipitation.textContent = `Осадки: ${precipitation} мм`;
+    p_sunrise.textContent = `Восход солнца: ${sunrise}`;
+    p_sunset.textContent = `Закат солнца: ${sunset}`;
+    p_apparentMinMax.textContent = `Ощущаемая температура: ${apparentMin}°C — ${apparentMax}°C`;
+    p_dailyHumidity.textContent = `Средняя влажность за день: ${relative}%`;
+    p_error2.textContent = "";
+    p_error2.classList.remove("p1_style");
+    p_error.textContent = "";
 }
 
 
-/* ========================================
-   5. КОНТЕЙНЕР ДНЕЙ И ПОГОДЫ
-======================================== */
+function weatherToday() {
+    if (!weatherData) return;
 
-.div2_style {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-
-    background-color: #111827;
-    color: #cbd5e1;
-
-    padding: 20px;
-    margin: 25px auto;
-
-    border: 2px solid #374151;
-    border-radius: 20px;
-
-    width: 95%;
-    max-width: 1400px;
-
-    box-sizing: border-box;
+    selectedDay = 0;
+    whatDay(selectedDay, weatherData);
 }
 
 
-/* ========================================
-   6. КОНТЕЙНЕР КНОПОК ДНЕЙ
-======================================== */
+function weatherTomorrow() {
+    if (!weatherData) return;
 
-.div3_style {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-
-    justify-content: center;
-    align-items: center;
-
-    background-color: #1f2937;
-    color: #cbd5e1;
-
-    padding: 15px;
-    margin: 10px 0 20px 0;
-
-    border: 1px solid #374b60;
-    border-radius: 15px;
-
-    width: 100%;
-    box-sizing: border-box;
+    selectedDay = 1;
+    whatDay(selectedDay, weatherData);
 }
 
 
-/* ========================================
-   7. КНОПКИ ВЫБОРА ДНЯ
-======================================== */
+function weatherOvermorrow() {
+    if (!weatherData) return;
 
-.buttonDays_style {
-    display: inline-block;
-
-    background-color: #293548;
-    color: #cbd5e1;
-
-    padding: 12px 16px;
-    margin: 5px;
-
-    border: 1px solid #475569;
-    border-radius: 12px;
-
-    font-family: Arial, sans-serif;
-    font-size: 20px;
-
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
-.buttonDays_style:hover {
-    background-color: #3b4b60;
-    transform: scale(1.02);
-}
-
-.buttonDays_style:active {
-    background-color: #263548;
-    transform: scale(0.98);
-}
-
-.buttonDays_style.active {
-    background-color: #36536d;
-    color: #f1f5f9;
-
-    border: 1px solid #7dd3fc;
+    selectedDay = 2;
+    whatDay(selectedDay, weatherData);
 }
 
 
-/* ========================================
-   8. ОСНОВНАЯ КАРТОЧКА ПОГОДЫ
-======================================== */
+function weatherFour() {
+    if (!weatherData) return;
 
-.div1_style {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
-
-    background-color: #172334;
-    color: #cbd5e1;
-
-    padding: 20px;
-    margin: 10px 0;
-
-    border: 2px solid #374b60;
-    border-radius: 20px;
-
-    font-family: Arial, sans-serif;
-    font-size: 20px;
-
-    width: 100%;
-    box-sizing: border-box;
+    selectedDay = 3;
+    whatDay(selectedDay, weatherData);
 }
 
 
-/* ========================================
-   9. ОБЩИЕ НАСТРОЙКИ ТЕКСТА ПОГОДЫ
-======================================== */
+function weatherFive() {
+    if (!weatherData) return;
 
-.div1_style p {
-    color: #d1dbe8;
-
-    font-family: Arial, sans-serif;
-    font-size: 20px;
-
-    margin: 10px 0;
+    selectedDay = 4;
+    whatDay(selectedDay, weatherData);
 }
 
 
-/* ========================================
-   10. ОСНОВНАЯ ИНФОРМАЦИЯ
-   div4_style:
-   p5  — дата
-   p2  — время
-   p3  — город
-   p18 — координаты
-======================================== */
+function weatherSix() {
+    if (!weatherData) return;
 
-.div4_style {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 5px;
-
-    background-color: #26384b;
-    color: #d1dbe8;
-
-    padding: 15px;
-    margin: 0;
-
-    border: 1px solid #40536a;
-    border-radius: 14px;
-
-    width: 100%;
-    box-sizing: border-box;
+    selectedDay = 5;
+    whatDay(selectedDay, weatherData);
 }
 
 
-/* ========================================
-   11. ТЕМПЕРАТУРА
-   div5_style:
-   p4  — средняя температура
-   p10 — диапазон температур
-   p16 — ощущаемая температура
-======================================== */
+function weatherSeven() {
+    if (!weatherData) return;
 
-.div5_style {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 5px;
-
-    background-color: #203c50;
-    color: #d1dbe8;
-
-    padding: 15px;
-    margin: 0;
-
-    border: 1px solid #376079;
-    border-radius: 14px;
-
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.div5_style p {
-    color: #7dd3fc;
+    selectedDay = 6;
+    whatDay(selectedDay, weatherData);
 }
 
 
-/* ========================================
-   12. ПОГОДНЫЕ УСЛОВИЯ
-   div6_style:
-   p11 — код погоды
-   p8  — облачность
-======================================== */
+async function openMeteo() {
+    try {
+        if (!apiUrl) {
+            p_error.textContent = "Город не выбран";
+            return;
+        }
 
-.div6_style {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 5px;
+        weatherData = null;
+        const response = await fetch(apiUrl);
 
-    background-color: #29374b;
-    color: #d1dbe8;
+        if (!response.ok) {
+            throw new Error();
+        }
 
-    padding: 15px;
-    margin: 0;
+        weatherData = await response.json();
 
-    border: 1px solid #46566c;
-    border-radius: 14px;
+        updateDaysButtons(weatherData);
+        whatDay(selectedDay, weatherData);
 
-    width: 100%;
-    box-sizing: border-box;
+        buttonToday.style.display = "flex";
+        buttonTomorrow.style.display = "flex";
+        buttonOvermorrow.style.display = "flex";
+        buttonFour.style.display = "flex";
+        buttonFive.style.display = "flex";
+        buttonSix.style.display = "flex";
+        buttonSeven.style.display = "flex";
+
+        weather.style.display = "flex";
+        weather.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+        weather.classList.add("div1_style");
+
+    } catch (error) {
+        p_date.textContent = "";
+        p_time.textContent = "";
+        p_temperature.textContent = "";
+        p_maxMinTemp.textContent = "";
+        p_dailyHumidity.textContent = "";
+        p_speed.textContent = "";
+        p_cloud.textContent = "";
+        p_weather.textContent = "";
+        p_windDirection.textContent = "";
+        p_precipitation.textContent = "";
+        p_sunrise.textContent = "";
+        p_sunset.textContent = "";
+        p_apparentMinMax.textContent = "";
+        p_dailyHumidity.textContent = "";
+        p_city.textContent = "";
+        p_coordinates.textContent = "";
+
+        p_error2.classList.add("p1_style");
+        p_error2.textContent = "Ошибка загрузки данных";
+        p_error.textContent = "Ошибка";
+        weather.style.display = "none";
+
+        buttonToday.style.display = "none";
+        buttonTomorrow.style.display = "none";
+        buttonOvermorrow.style.display = "none";
+        buttonFour.style.display = "none";
+        buttonFive.style.display = "none";
+        buttonSix.style.display = "none";
+        buttonSeven.style.display = "none";
+    }
 }
 
 
-/* ========================================
-   13. ВЕТЕР
-   div7_style:
-   p7  — скорость ветра
-   p12 — направление ветра
-======================================== */
+function userSelect() {
+    let user_search = search_city.value.trim().toLowerCase();
 
-.div7_style {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 5px;
+    if (user_search === "") {
+        p_error.textContent = "Введите название города";
+        return;
+    }
 
-    background-color: #253b43;
-    color: #d1dbe8;
+    let cityFound = false;
 
-    padding: 15px;
-    margin: 0;
+    for (const city of cityesData) {
+        if (user_search === city.name.toLowerCase()) {
+            p_error.textContent = "";
+            lat = city.lat;
+            lon = city.lon;
 
-    border: 1px solid #3d5a61;
-    border-radius: 14px;
+            apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,cloud_cover&hourly=temperature_2m&daily=temperature_2m_mean,weather_code,temperature_2m_min,temperature_2m_max,apparent_temperature_min,apparent_temperature_max,relative_humidity_2m_mean,wind_speed_10m_max,wind_direction_10m_dominant,cloud_cover_mean,precipitation_sum,sunrise,sunset&timezone=auto&forecast_days=7`;
 
-    width: 100%;
-    box-sizing: border-box;
+            cityFound = true;
+            p_city.textContent = `${city.status}: ${city.name}`;
+            p_coordinates.textContent = `Широта: ${city.lat}, Долгота: ${city.lon}`;
+            break;
+        }
+    }
+
+    if (cityFound === false) {
+        p_error.textContent = "Город не найден";
+        return;
+    }
+
+    openMeteo();
 }
 
 
-/* ========================================
-   14. ОСАДКИ И ВЛАЖНОСТЬ
-   div8_style:
-   p13 — осадки
-   p17 — влажность
-======================================== */
+async function loadCityes() {
+    cityesData = await getCityesApi();
 
-.div8_style {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 5px;
-
-    background-color: #30364a;
-    color: #d1dbe8;
-
-    padding: 15px;
-    margin: 0;
-
-    border: 1px solid #4b526b;
-    border-radius: 14px;
-
-    width: 100%;
-    box-sizing: border-box;
+    if (!cityesData) {
+        p_error.textContent = "Ошибка";
+    }
 }
 
 
-/* ========================================
-   15. ВОСХОД И ЗАКАТ
-   div9_style:
-   p14 — восход солнца
-   p15 — закат солнца
-======================================== */
+loadCityes();
 
-.div9_style {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 5px;
-
-    background-color: #3a3548;
-    color: #d1dbe8;
-
-    padding: 15px;
-    margin: 0;
-
-    border: 1px solid #5a506a;
-    border-radius: 14px;
-
-    width: 100%;
-    box-sizing: border-box;
-}
+button.addEventListener("click", userSelect);
+button2.addEventListener("click", openMeteo);
+buttonToday.addEventListener("click", weatherToday);
+buttonTomorrow.addEventListener("click", weatherTomorrow);
+buttonOvermorrow.addEventListener("click", weatherOvermorrow);
+buttonFour.addEventListener("click", weatherFour);
+buttonFive.addEventListener("click", weatherFive);
+buttonSix.addEventListener("click", weatherSix);
+buttonSeven.addEventListener("click", weatherSeven);
