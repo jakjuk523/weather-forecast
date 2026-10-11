@@ -1,51 +1,81 @@
 <!DOCTYPE html>
 <html lang="ru">
-   <head>
-       <meta charset="utf-8">
-       <title>Прогноз Погоды</title>
-       <link href="style.css" rel="stylesheet">
-       <script src="index.js" defer></script>
-   </head>
-   
-   <body>
-       <p class="p1_style" id="p1"></p>
-       <button class="button2_style" id="btn2">Обновить</button>
-       
-       <input class="input1_style" id="npt1" placeholder="Найти город">
+<head>
+    <meta charset="utf-8">
+    <title>Прогноз Погоды</title>
+    <link href="style.css" rel="stylesheet">
+    <script src="index.js" defer></script>
+</head>
 
-       <button class="button1_style" id="btn1">Выбрать город</button>
-       
-       <div class="div2_style">
-           <div class="div3_style">
-               <button class="buttonDays_style" id="btn3">сегодня</button>
-               <button class="buttonDays_style" id="btn4">завтра</button>
-               <button class="buttonDays_style" id="btn5">послезавтра</button>
-               <button class="buttonDays_style" id="btn6"></button>
-               <button class="buttonDays_style" id="btn7"></button>
-               <button class="buttonDays_style" id="btn8"></button>
-               <button class="buttonDays_style" id="btn9"></button>
-           </div>
-           
-           <div class="div1_style" id="dv1">
-               <p class="p5_style" id="p5"></p>
-               <p class="p2_style" id="p2"></p>
-               <p class="p3_style" id="p3"></p>
-               <p class="p18_style" id="p18"></p>
-               <p class="p4_style" id="p4"></p>
-               <p class="p4_style" id="p10"></p>
-               <p class="p6_style" id="p6"></p>
-               <p class="p7_style" id="p7"></p>
-               <p class="p8_style" id="p8"></p>
-               <p class="p11_style" id="p11"></p>
-               <p class="p12_style" id="p12"></p>
-               <p class="p13_style" id="p13"></p>
-               <p class="p14_style" id="p14"></p>
-               <p class="p15_style" id="p15"></p>
-               <p class="p16_style" id="p16"></p>
-               <p class="p17_style" id="p17"></p>
-           </div>
-       </div>
-           
-       <p id="p9"></p>
-   </body>
+<body>
+    <p class="p1_style" id="p1"></p>
+
+    <button class="button2_style" id="btn2">Обновить</button>
+
+    <input class="input1_style" id="npt1" placeholder="Найти город">
+
+    <button class="button1_style" id="btn1">Выбрать город</button>
+
+    <div class="div2_style">
+
+        <!-- КНОПКИ ВЫБОРА ДНЯ -->
+        <div class="div3_style">
+            <button class="buttonDays_style" id="btn3">Сегодня</button>
+            <button class="buttonDays_style" id="btn4">Завтра</button>
+            <button class="buttonDays_style" id="btn5">Послезавтра</button>
+            <button class="buttonDays_style" id="btn6"></button>
+            <button class="buttonDays_style" id="btn7"></button>
+            <button class="buttonDays_style" id="btn8"></button>
+            <button class="buttonDays_style" id="btn9"></button>
+        </div>
+
+        <!-- КАРТОЧКА ПОГОДЫ -->
+        <div class="div1_style" id="dv1">
+
+            <!-- ОСНОВНАЯ ИНФОРМАЦИЯ -->
+            <div class="div4_style">
+                <p class="p5_style" id="p5"></p>
+                <p class="p2_style" id="p2"></p>
+                <p class="p3_style" id="p3"></p>
+                <p class="p18_style" id="p18"></p>
+            </div>
+
+            <!-- ТЕМПЕРАТУРА -->
+            <div class="div5_style">
+                <p class="p4_style" id="p4"></p>
+                <p class="p4_style" id="p10"></p>
+                <p class="p16_style" id="p16"></p>
+            </div>
+
+            <!-- ПОГОДНЫЕ УСЛОВИЯ -->
+            <div class="div6_style">
+                <p class="p11_style" id="p11"></p>
+                <p class="p8_style" id="p8"></p>
+            </div>
+
+            <!-- ВЕТЕР -->
+            <div class="div7_style">
+                <p class="p7_style" id="p7"></p>
+                <p class="p12_style" id="p12"></p>
+            </div>
+
+            <!-- ОСАДКИ И ВЛАЖНОСТЬ -->
+            <div class="div8_style">
+                <p class="p13_style" id="p13"></p>
+                <p class="p17_style" id="p17"></p>
+            </div>
+
+            <!-- ВОСХОД И ЗАКАТ -->
+            <div class="div9_style">
+                <p class="p14_style" id="p14"></p>
+                <p class="p15_style" id="p15"></p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ОШИБКА ЗАГРУЗКИ ПОГОДЫ -->
+    <p id="p9"></p>
+
+</body>
 </html>
