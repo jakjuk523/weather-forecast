@@ -145,37 +145,6 @@ function whatDay(selectedDay, weatherData) {
     p_error.textContent = "";
 }
 
-function updateDaysButtons(weatherData) {
-    const buttons = [
-        buttonToday,
-        buttonTomorrow,
-        buttonOvermorrow,
-        buttonFour,
-        buttonFive,
-        buttonSix,
-        buttonSeven
-    ];
-
-    const dayNames = [
-        "Сегодня",
-        "Завтра",
-        "Послезавтра"
-    ];
-
-    buttons.forEach((button, index) => {
-        if (index < 3) {
-            button.textContent = dayNames[index];
-        } else {
-            const date = weatherData.daily.time[index];
-            const dateObject = new Date(date + "T12:00:00");
-
-            button.textContent = new Intl.DateTimeFormat("ru-RU", {
-                day: "numeric",
-                month: "long"
-            }).format(dateObject);
-        }
-    });
-}
 
 function weatherToday() {
     if (!weatherData) return;
