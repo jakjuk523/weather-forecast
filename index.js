@@ -68,6 +68,33 @@ async function getCityesApi() {
 }
 
 
+function updateDaysButtons() {
+    const buttons = [
+        buttonToday, buttonTomorrow, buttonOvermorrow,
+        buttonFour, buttonFive, buttonSix, buttonSeven
+    ];
+
+    const dayNames = ["Сегодня", "Завтра", "Послезавтра"];
+
+    const today = new Date();
+
+    buttons.forEach((button, index) => {
+        if (index < 3) {
+            button.textContent = dayNames[index];
+        } else {
+            const date = new Date(today);
+            date.setDate(today.getDate() + index);
+
+            button.textContent = new Intl.DateTimeFormat("ru-RU", {
+                day: "numeric",
+                month: "long"
+            }).format(date);
+        }
+    });
+}
+
+updateDaysButtons();
+
 function whatDay(selectedDay, weatherData) {
     
     const time = weatherData.current.time.split("T")[1];
