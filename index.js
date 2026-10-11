@@ -19,7 +19,7 @@ const p_sunrise = document.getElementById("p14");
 const p_sunset = document.getElementById("p15");
 const p_apparentMinMax = document.getElementById("p16");
 const p_dailyHumidity = document.getElementById("p17");
-const p_сoordinats = document.getElementById("p18");
+const p_coordinates = document.getElementById("p18");
 
 
 const buttonDays_style = document.querySelectorAll(".buttonDays_style");
@@ -27,6 +27,10 @@ const buttonDays_style = document.querySelectorAll(".buttonDays_style");
 const buttonToday = document.getElementById("btn3");
 const buttonTomorrow = document.getElementById("btn4");
 const buttonOvermorrow = document.getElementById("btn5");
+const buttonFour = document.getElementById("btn6");
+const buttonFive = document.getElementById("btn7");
+const buttonSix = document.getElementById("btn8");
+const buttonSeven = document.getElementById("btn9");
 
 
 buttonDays_style.forEach(button => {
@@ -51,6 +55,7 @@ let cityesData = [];
 let weatherData = null;
 let apiUrl = null;
 let selectedDay = 0;
+let months = [];
 
 async function getCityesApi() {
     try {
@@ -67,8 +72,18 @@ function whatDay(selectedDay, weatherData) {
     
     const time = weatherData.current.time.split("T")[1];
     const date = weatherData.daily.time[selectedDay];
-    const weatherCode = weatherData.daily.weather_code[selectedDay];
+
+    const dateObject = new Date(date + "T12:00:00");
+
+    const formattedDate = new Intl.DateTimeFormat("ru-RU", {
+        day: "numeric",
+        month: "long"
+    }).format(dateObject);
+
+    months = formattedDate;
     
+    
+    const weatherCode = weatherData.daily.weather_code[selectedDay];
     const temperature = weatherData.daily.temperature_2m_mean[selectedDay];
     const min_temp = weatherData.daily.temperature_2m_min[selectedDay];
     const max_temp = weatherData.daily.temperature_2m_max[selectedDay];
@@ -103,6 +118,38 @@ function whatDay(selectedDay, weatherData) {
     p_error.textContent = "";
 }
 
+function updateDaysButtons(weatherData) {
+    const buttons = [
+        buttonToday,
+        buttonTomorrow,
+        buttonOvermorrow,
+        buttonFour,
+        buttonFive,
+        buttonSix,
+        buttonSeven
+    ];
+
+    const dayNames = [
+        "Сегодня",
+        "Завтра",
+        "Послезавтра"
+    ];
+
+    buttons.forEach((button, index) => {
+        if (index < 3) {
+            button.textContent = dayNames[index];
+        } else {
+            const date = weatherData.daily.time[index];
+            const dateObject = new Date(date + "T12:00:00");
+
+            button.textContent = new Intl.DateTimeFormat("ru-RU", {
+                day: "numeric",
+                month: "long"
+            }).format(dateObject);
+        }
+    });
+}
+
 function weatherToday() {
     if (!weatherData) return;
     
@@ -124,6 +171,33 @@ function weatherOvermorrow() {
     whatDay(selectedDay, weatherData);
 }
 
+function weatherFour() {
+    if (!weatherData) return;
+
+    selectedDay = 3;
+    whatDay(selectedDay, weatherData);
+}
+
+function weatherFive() {
+    if (!weatherData) return;
+
+    selectedDay = 4;
+    whatDay(selectedDay, weatherData);
+}
+
+function weatherSix() {
+    if (!weatherData) return;
+    
+    selectedDay = 5;
+    whatDay(selectedDay, weatherData);
+}
+
+function weatherSeven() {
+    if (!weatherData) return;
+    
+    selectedDay = 6;
+    whatDay(selectedDay, weatherData);
+}
 
 async function openMeteo() {
     try {
@@ -140,12 +214,17 @@ async function openMeteo() {
         }
         
         weatherData = await response.json();
-
+        
+        updateDaysButtons(weatherData);
         whatDay(selectedDay, weatherData);
         
         buttonToday.style.display = "flex";
         buttonTomorrow.style.display = "flex";
         buttonOvermorrow.style.display = "flex";
+        buttonFour.style.display = "flex";
+        buttonFive.style.display = "flex";
+        buttonSix.style.display = "flex";
+        buttonSeven.style.display = "flex";
         
         weather.style.display = "flex";
         weather.scrollIntoView({
@@ -160,7 +239,7 @@ async function openMeteo() {
         p_time.textContent = "" ;
         p_temperature.textContent = "" ;
         p_maxMinTemp.textContent = "" ;
-        p_relative.textContent = "" ;
+        p_dailyHumidity.textContent = "";
         p_speed.textContent = "" ;
         p_cloud.textContent = "" ;
         p_weather.textContent = "" ;
@@ -170,6 +249,8 @@ async function openMeteo() {
         p_sunset.textContent = "" ;
         p_apparentMinMax.textContent = "" ;
         p_dailyHumidity.textContent = "" ;
+        p_city.textContent = "";
+        p_coordinates.textContent = "";
         
         
         p_error2.classList.add("p1_style");
@@ -180,6 +261,10 @@ async function openMeteo() {
         buttonToday.style.display = "none";
         buttonTomorrow.style.display = "none";
         buttonOvermorrow.style.display = "none";
+        buttonFour.style.display = "none";
+        buttonFive.style.display = "none";
+        buttonSix.style.display = "none";
+        buttonSeven.style.display = "none";
     }
 }
 
@@ -198,10 +283,10 @@ function userSelect() {
             p_error.textContent = "";
             lat = city.lat;
             lon = city.lon;
-            apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,cloud_cover&hourly=temperature_2m&daily=temperature_2m_mean,weather_code,temperature_2m_min,temperature_2m_max,apparent_temperature_min,apparent_temperature_max,relative_humidity_2m_mean,wind_speed_10m_max,wind_direction_10m_dominant,cloud_cover_mean,precipitation_sum,sunrise,sunset&timezone=auto`;
+            apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,cloud_cover&hourly=temperature_2m&daily=temperature_2m_mean,weather_code,temperature_2m_min,temperature_2m_max,apparent_temperature_min,apparent_temperature_max,relative_humidity_2m_mean,wind_speed_10m_max,wind_direction_10m_dominant,cloud_cover_mean,precipitation_sum,sunrise,sunset&timezone=auto&forecast_days=7`;
             cityFound = true;
             p_city.textContent = `${city.status}: ${city.name}`;
-            p_сoordinats.textContent = `Долгота: ${city.lat}, Широта: ${city.lon}`;
+            p_coordinates.textContent = `Широта: ${city.lat}, Долгота: ${city.lon}`;
             break;
         }
     }
@@ -229,4 +314,7 @@ button2.addEventListener("click", openMeteo);
 buttonToday.addEventListener("click", weatherToday);
 buttonTomorrow.addEventListener("click", weatherTomorrow);
 buttonOvermorrow.addEventListener("click", weatherOvermorrow);
-
+buttonFour.addEventListener("click", weatherFour);
+buttonFive.addEventListener("click", weatherFive);
+buttonSix.addEventListener("click", weatherSix);
+buttonSeven.addEventListener("click", weatherSeven);
