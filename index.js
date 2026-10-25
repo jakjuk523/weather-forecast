@@ -43,7 +43,6 @@ buttonDays_style.forEach(button => {
     });
 });
 
-
 // Выбираем сегодняшний день при загрузке страницы
 document.getElementById("btn3").click();
 
@@ -57,7 +56,28 @@ let weatherData = null;
 let apiUrl = null;
 let selectedDay = 0;
 let months = [];
+let codsWet = [];
 
+async function getWeatherCodsApi() {
+    try {
+        const cods = await fetch("cods.json");
+        const weatherCods = await cods.json();
+        return weatherCods;
+    } catch (error) {
+        p_error.textContent = "Ошибка загрузки погоды";
+    }
+}
+
+async function getCosd() {
+    codsWet = await getWeatherCodsApi();
+
+    if (!codsWet) {
+        p_error.textContent = "Ошибка загрузки погоды";
+    }
+
+    const weatherCode = weatherData.daily.weather_code[selectedDay];
+    p_weather.textContent = `codsWet[${weatherCode}]`;
+}
 
 async function getCityesApi() {
     try {
@@ -113,7 +133,6 @@ function whatDay(selectedDay, weatherData) {
     months = formattedDate;
 
 
-    const weatherCode = weatherData.daily.weather_code[selectedDay];
     const temperature = weatherData.daily.temperature_2m_mean[selectedDay];
     const min_temp = weatherData.daily.temperature_2m_min[selectedDay];
     const max_temp = weatherData.daily.temperature_2m_max[selectedDay];
@@ -136,7 +155,6 @@ function whatDay(selectedDay, weatherData) {
     p_maxMinTemp.textContent = `Диапозон: ${min_temp}°C - ${max_temp}°C`;
     p_speed.textContent = `Максимальная скорость ветра за день: ${speed} км/ч`;
     p_cloud.textContent = `Облачность: ${cloud}%`;
-    p_weather.textContent = `Код погоды: ${weatherCode}`;
     p_windDirection.textContent = `Направление ветра: ${windDirection}°`;
     p_precipitation.textContent = `Осадки: ${precipitation} мм`;
     p_sunrise.textContent = `Восход солнца: ${sunrise}`;
